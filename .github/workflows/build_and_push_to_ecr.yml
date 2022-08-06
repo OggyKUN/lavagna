@@ -41,7 +41,9 @@ jobs:
          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
      - name: Create ZIP for EB
-       run: zip ${{ env.DEPLOY_PACKAGE_NAME }} . .env docker-compose.yml
+       run: zip ${{ env.DEPLOY_PACKAGE_NAME }} .env docker-compose.yml
+     - name: Check archive
+       run: ll -a
 
   deploy:
   
