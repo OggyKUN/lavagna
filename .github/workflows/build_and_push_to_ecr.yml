@@ -43,26 +43,20 @@ jobs:
      - name: Create ZIP for EB
        run: zip ${{ env.DEPLOY_PACKAGE_NAME }} .env docker-compose.yml
 
-
   deploy:
-    name: Deploy image to Elastic Beanstalk from ECR
-    runs-on: ubuntu-latest
-    needs: [build]
-
-    steps:
-     - name: Configure AWS credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-         aws-region: us-east-1
-          
-     - name: Create new Elastic Beanstalk app version
-       run: |
-         aws elasticbeanstalk create-application-version \
-         --application-name ${{ env.EB_APPLICATION_NAME }} \
-         --source-bundle file://./${{ env.DEPLOY_PACKAGE_NAME }} \
-         --version-label "Ver-${{ github.sha }}" \
-    
-     - name: Deploy new Elastic Beanstalk app version
-       run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Ver-${{ github.sha }}"
+  
+     name: Deploy image to Elastic Beanstalk from ECR
+     runs-on: ubuntu-latest
+     needs: [build]
+     steps:
+      - name: Deploy image to Elastic Beanstalk from ECR
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           application_name: ${{ env.EB_APPLICATION_NAME }}
+           environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
+           version_label: "Ver-${{ github.sha }}"
+           region: ${{ env.AWS_REGION_NAME }}
+           deployment_package: ${{ env.DEPLOY_PACKAGE_NAME }}
+   
