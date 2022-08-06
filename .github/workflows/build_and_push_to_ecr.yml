@@ -59,7 +59,7 @@ jobs:
           
      - name: Create new Elastic Beanstalk app version
        run: |
-         aws elasticbeanstalk create-applicatiaon-version \
+         aws elasticbeanstalk create-application-version \
          --application-name ${{ env.EB_APPLICATION_NAME }} \
          --source-bundle ${{ env.DEPLOY_PACKAGE_NAME }} \
          --version-label "Ver-${{ github.sha }}" \
