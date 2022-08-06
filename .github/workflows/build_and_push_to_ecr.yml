@@ -44,7 +44,7 @@ jobs:
        run: zip -r dockerfiles.zip . -x '*.git*'
        
      - name: Check archive
-       run: ls -a
+       run: pwd
 
   deploy:
   
@@ -59,7 +59,7 @@ jobs:
            aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
            application_name: ${{ env.EB_APPLICATION_NAME }}
            environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
-           version_label: 12345
+           version_label: 123456
            region: ${{ env.AWS_REGION_NAME }}
            deployment_package: dockerfiles.zip
    
