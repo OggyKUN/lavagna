@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  lavagna:
+    image: 429242238568.dkr.ecr.us-east-1.amazonaws.com/lavagna_first
+    restart: always
+    container_name: lavagna
+    ports:
+      - "80:8080"
+    env_file:
+      - .env
