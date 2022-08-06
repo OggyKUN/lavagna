@@ -44,7 +44,7 @@ jobs:
        run: zip -r dockerfiles.zip . -x '*.git*'
        
      - name: Copy archive into root
-       run: cp dockerfiles.zip /home/runner/work/lavagna
+       run: cp dockerfiles.zip /home/runner/work
 
   deploy:
   
