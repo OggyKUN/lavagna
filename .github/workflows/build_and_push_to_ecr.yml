@@ -43,7 +43,7 @@ jobs:
      - name: Create ZIP for EB
        run: zip ${{ env.DEPLOY_PACKAGE_NAME }} .env docker-compose.yml
      - name: Check archive
-       run: ll -a
+       run: ls -a
 
   deploy:
   
