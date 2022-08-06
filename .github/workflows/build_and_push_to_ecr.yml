@@ -2,7 +2,7 @@ name: Pipeline-to AWS-Elastic-Beanstalk
 env:
   EB_APPLICATION_NAME    : "lavagna"
   EB_ENVIRONMENT_NAME    : "Lavagna-loadbalancer-github-actions-env"
-  DEPLOY_PACKAGE_NAME    : "lavagna_${{ github.sha }}"
+
   AWS_REGION_NAME        : "us-east-1"
 
 on:
@@ -41,7 +41,7 @@ jobs:
          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
      - name: Create ZIP for EB
-       run: zip ${{ env.DEPLOY_PACKAGE_NAME }} .env docker-compose.yml
+       run: zip dockerfiles.zip .env docker-compose.yml
      - name: Check archive
        run: ls -a
 
@@ -60,5 +60,5 @@ jobs:
            environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
            version_label: "Ver-${{ github.sha }}"
            region: ${{ env.AWS_REGION_NAME }}
-           deployment_package: ${{ env.DEPLOY_PACKAGE_NAME }}
+           deployment_package: dockerfiles.zip
    
