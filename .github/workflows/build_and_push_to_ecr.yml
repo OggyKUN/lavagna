@@ -41,7 +41,8 @@ jobs:
          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
      - name: Create ZIP for EB
-       run: zip dockerfiles.zip .env docker-compose.yml
+       run: zip -r dockerfiles.zip . -x '*.git*'
+       
      - name: Check archive
        run: ls -a
 
