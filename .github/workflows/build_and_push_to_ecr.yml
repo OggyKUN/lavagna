@@ -60,6 +60,6 @@ jobs:
            application_name: ${{ env.EB_APPLICATION_NAME }}
            environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
            version_label: 123456
-           region: ${{ env.AWS_REGION_NAME }}
-           deployment_package: dockerfiles.zip
+           region: ${{ env.AWS_REGION_NAME }} 
+           deployment_package: ${{ github.workspace }}/dockerfiles.zip
    
