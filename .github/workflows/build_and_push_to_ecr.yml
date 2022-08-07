@@ -42,9 +42,6 @@ jobs:
 
      - name: Create ZIP for EB
        run: zip -r dockerfiles.zip . -x '*.git*'
-       
-     - name: Copy archive into root
-       run: cp dockerfiles.zip /home
 
   deploy:
   
