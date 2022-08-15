@@ -1,4 +1,5 @@
 name: Pipeline-to AWS-Elastic-Beanstalk
+
 env:
   EB_APPLICATION_NAME    : "lavagna"
   EB_ENVIRONMENT_NAME    : "Lavagna-loadbalancer-github-actions-env"
